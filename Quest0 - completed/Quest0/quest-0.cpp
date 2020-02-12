@@ -80,19 +80,19 @@ int main () {
     }
 }
 
-bool isGameDone (string currentGuess,string correctCountry) {
-	if (isGameSuccessful(currentGuess,correctCountry)) {
+bool isGameDone (string currentGuess,string correctCountry) { // checks if the player won or lost then returns true if the game is over or false if the game is still going
+	if (isGameSuccessful(currentGuess,correctCountry)) { // checks if the player has won
 		printGameOver(true);
 		return true;
 	}
-	else if (currentGuessNumber > 4) {
+	else if (currentGuessNumber > 4) { // checks if the guess number is over 4 (which would be a loss)
 		printGameOver(false);
 		return true;
 	}
-    return false;
+    return false; //the game is still going
 }
 
-bool isGameSuccessful (string currentGuess,string secretWord) {
+bool isGameSuccessful (string currentGuess,string secretWord) { // check if the player has sucessfully guessed the word
 	if (currentGuess == secretWord) {
 		return true;
 	}
@@ -101,7 +101,7 @@ bool isGameSuccessful (string currentGuess,string secretWord) {
 	}
 }
 
-void printGameOver (bool won) {
+void printGameOver (bool won) { // prints the game over screen for either a loss or win
 	if (won) {
 		cout << endl << "CONGRATS" << endl;
 	}
@@ -111,7 +111,7 @@ void printGameOver (bool won) {
 	return;
 }
 
-void printGameBoard (string guess) {
+void printGameBoard (string guess) { // print the hangman screen
 	long int boxLength = guess.length() + (padding * 2);
 	cout << "+";//print the top left corner
 
@@ -158,11 +158,11 @@ void printGameBoard (string guess) {
 	return;
 }
 
-void printNumberOfTries () {
+void printNumberOfTries () { // print to screen the number of incorrect guesses the player has made
 	cout << "you have made " << currentGuessNumber << " guesses." << endl;
 }
 
-char processUserInput () {
+char processUserInput () { // get the user to input a character
 	char guessLetter;
 	cout << "Enter a letter to make a guess: " << endl;
 	cin >> guessLetter;
@@ -170,7 +170,7 @@ char processUserInput () {
     return guessLetter;
 }
 
-void fillLetters (char guessChar, string secretWord) {
+void fillLetters (char guessChar, string secretWord) { // check if the guess was correct and if it was correct the currentGuessString
 	bool incorrectGuess = true;
 	for (int i = 0; i < secretWord.length(); ++i) {
 		if (secretWord[i] == guessChar) {
